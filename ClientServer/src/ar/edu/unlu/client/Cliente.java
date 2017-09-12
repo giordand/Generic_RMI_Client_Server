@@ -21,7 +21,7 @@ public class Cliente {
 	public Cliente(String ip, int port){
 		this.ip = ip;
 		this.port = port;
-		connectServer();				 
+		connectServer();	 			 
 	}
 
 	private void connectServer() {
