@@ -1,9 +1,12 @@
 package ar.edu.unlu.client;
 
-public class ClientModel implements IClientModel {
+import java.util.Observable;
+
+public class ClientModel extends Observable implements IClientModel {
 	private String id;
 	private String ip;
 	private int port;
+	
 	
 	public ClientModel(String id) {
 		this(id,"",-1);

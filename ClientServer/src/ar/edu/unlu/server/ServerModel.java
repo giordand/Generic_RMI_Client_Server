@@ -4,10 +4,11 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.Observable;
 
 import ar.edu.unlu.client.IClientModel;
 
-public class ServerModel implements IServerModel{
+public class ServerModel extends Observable implements IServerModel{
     
 	private ArrayList<IClientModel> clientes;
 	
@@ -22,16 +23,19 @@ public class ServerModel implements IServerModel{
 		try {
 			System.out.println(ip);
 			System.out.println(port);
+			
 			registro = LocateRegistry.getRegistry(ip, port);
 			IClientModel cliente =(IClientModel)registro.lookup("ClientePOO");
 			clientes.add(cliente);
-			System.out.println("Conectado al cliente"+cliente.getId());
+			//this.notifyThread();
+			this.setChanged();
+    		this.notifyObservers("Nuevo cliente conectado = "+cliente.getId());
+			System.out.println("El modelo del servidor registro un nuevo cliente");
 		} catch (RemoteException | NotBoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
+	    
 	}
-	
-	
-	
+		
 } 

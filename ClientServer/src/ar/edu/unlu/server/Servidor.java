@@ -6,10 +6,11 @@ import java.rmi.server.UnicastRemoteObject;
 
 
 
-public class Servidor implements Runnable {
+public class Servidor{
    
     private int port;
     private String iPhost;
+    private ServerModel serverModel;
 	
 
     public Servidor(){
@@ -21,13 +22,18 @@ public class Servidor implements Runnable {
 		this.port=port;
 	}
 	
-	@Override
+	public ServerModel getServerModel() {
+		return this.serverModel;
+	}
+	
+	
 	public void run() {
 		// TODO Auto-generated method stub
 		try{
 			 System.setProperty("java.rmi.server.hostname", iPhost);
 			 Registry registro = LocateRegistry.createRegistry(port);
-			 IServerModel remoteServerModel = (IServerModel) UnicastRemoteObject.exportObject(new ServerModel(), port);
+			 this.serverModel = new ServerModel();
+			 IServerModel remoteServerModel = (IServerModel) UnicastRemoteObject.exportObject(this.serverModel, port);
 	         registro.bind("ServerPOO", remoteServerModel);
 	        
 	         System.out.println("Usted esta hosteando con la IP :" + iPhost + "-- Puerto: "+ port);	     
@@ -37,12 +43,6 @@ public class Servidor implements Runnable {
 			
 		}
 
-	}
-	
-	public static void main(String[] args) {
-		Servidor me = new Servidor();
-		me.run();		
-	}
-	
+	}	
 	
 }

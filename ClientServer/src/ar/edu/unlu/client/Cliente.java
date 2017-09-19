@@ -8,11 +8,12 @@ import ar.edu.unlu.server.IServerModel;
 
 
 
-public class Cliente {
+public class Cliente{
 	
 	private IServerModel server;
 	private String ip;
 	private int port;
+	private ClientModel clientModel;
 
 	
 	public Cliente(){
@@ -22,6 +23,10 @@ public class Cliente {
 		this.ip = ip;
 		this.port = port;
 		connectServer(); 	 			 
+	}
+	
+	public ClientModel getClientModel() {
+		return this.clientModel;
 	}
 
 	private void connectServer() {
@@ -36,7 +41,7 @@ public class Cliente {
 			System.out.println("Conectado al server");
 			//Creo el server del cliente
 			createServer();
-			Thread.sleep(4000);
+			//Thread.sleep(4000);
 			/*
 			 * Le pido al servidor (juego) que me agregue como cliente. Le paso mi IP y PORT para que
 			 * se conecte a mi server
@@ -52,7 +57,8 @@ public class Cliente {
 		try{
 			 System.setProperty("java.rmi.server.hostname", this.ip);
 			 Registry registro = LocateRegistry.createRegistry(this.port);
-			 IClientModel remoteClientModel = (IClientModel) UnicastRemoteObject.exportObject(new ClientModel("Cliente1"), port);
+			 this.clientModel = new ClientModel("Cliente1");
+			 IClientModel remoteClientModel = (IClientModel) UnicastRemoteObject.exportObject(this.clientModel, port);
 	         registro.bind("ClientePOO", remoteClientModel);
 	        
 	         System.out.println("Usted esta hosteando con la IP :" + this.ip + "-- Puerto: "+ this.port);	     
@@ -63,7 +69,4 @@ public class Cliente {
 		}
 	}
 	
-	public static void main(String[] args) {
-		new Cliente();
-	}
 }
