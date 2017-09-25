@@ -5,14 +5,14 @@ import java.util.Observable;
 import java.util.Observer;
 
 import ar.edu.unlu.server.Server;
-import ar.edu.unlu.server.ServidorFactory;
+import ar.edu.unlu.server.ServerFactory;
 
 public abstract class ServerApp implements Observer{
 	
 	private Server server;
 	
 	public ServerApp() {
-		ServidorFactory s = new ServidorFactory(this);
+		ServerFactory s = new ServerFactory(this);
 		this.server = s.getServerModel();
 	}
 

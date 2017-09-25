@@ -8,17 +8,17 @@ import ar.edu.unlu.appserver.ServerApp;
 
 
 
-public class ServidorFactory{
+public class ServerFactory{
    
     private String iPhost;
     private ServerModel serverModel;
 	
 
-    public ServidorFactory(ServerApp serverApp){
+    public ServerFactory(ServerApp serverApp){
     	this(serverApp,"127.0.0.1",7896);
 	}
     
-	public ServidorFactory(ServerApp serverApp, String ip,int port){
+	public ServerFactory(ServerApp serverApp, String ip,int port){
 		iPhost=ip;
 		try{
 			 System.setProperty("java.rmi.server.hostname", iPhost);
