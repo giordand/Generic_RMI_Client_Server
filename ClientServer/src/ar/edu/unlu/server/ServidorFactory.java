@@ -10,7 +10,6 @@ import ar.edu.unlu.appserver.ServerApp;
 
 public class ServidorFactory{
    
-    private int port;
     private String iPhost;
     private ServerModel serverModel;
 	
@@ -21,7 +20,6 @@ public class ServidorFactory{
     
 	public ServidorFactory(ServerApp serverApp, String ip,int port){
 		iPhost=ip;
-		this.port=port;
 		try{
 			 System.setProperty("java.rmi.server.hostname", iPhost);
 			 Registry registro = LocateRegistry.createRegistry(port);
