@@ -6,14 +6,14 @@ import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Observable;
 
-import ar.edu.unlu.client.IClientModel;
+import ar.edu.unlu.client.RemoteClient;
 
-public class ServerModel extends Observable implements IServerModel{
+public class ServerModel extends Observable implements RemoteServer,Server{
     
-	private ArrayList<IClientModel> clientes;
+	private ArrayList<RemoteClient> clientes;
 	
 	protected ServerModel() throws RemoteException{
-		this.clientes = new ArrayList<IClientModel>();
+		this.clientes = new ArrayList<RemoteClient>();
 	}
 
 
@@ -25,7 +25,7 @@ public class ServerModel extends Observable implements IServerModel{
 			System.out.println(port);
 			
 			registro = LocateRegistry.getRegistry(ip, port);
-			IClientModel cliente =(IClientModel)registro.lookup("ClientePOO");
+			RemoteClient cliente =(RemoteClient)registro.lookup("ClientePOO");
 			clientes.add(cliente);
 			//this.notifyThread();
 			this.setChanged();
@@ -36,6 +36,19 @@ public class ServerModel extends Observable implements IServerModel{
 			e.printStackTrace();
 		}		
 	    
+	}
+	
+	@Override
+	public void message(Object o) throws RemoteException {
+		this.setChanged();
+		this.notifyObservers(o);
+	}
+	
+	
+	public void sendMessageToClients(Object o) throws RemoteException {
+		for (RemoteClient c : this.clientes) {
+			c.message(o);
+		}
 	}
 		
 } 

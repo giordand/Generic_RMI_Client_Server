@@ -6,8 +6,15 @@ public class MainJuego {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ConcreteJuego j = new ConcreteJuego();
+		Juego j = new Juego();
 		System.out.println("Juego creado");
+		try {
+			Thread.sleep(30000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		j.sendMessageToClients("El juego envio un mensaje!!!");
 	}
 
 }

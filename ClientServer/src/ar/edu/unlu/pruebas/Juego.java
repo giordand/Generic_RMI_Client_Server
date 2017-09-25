@@ -1,8 +1,8 @@
 package ar.edu.unlu.pruebas;
 
-import ar.edu.unlu.juego.Juego;
+import ar.edu.unlu.appserver.ServerApp;
 
-public class ConcreteJuego extends Juego{
+public class Juego extends ServerApp{
 
 	@Override
 	protected void actualizacion(Object arg) {
@@ -15,6 +15,10 @@ public class ConcreteJuego extends Juego{
 			e.printStackTrace();
 		}
 		System.out.println("Fin update");
+	}
+	
+	public void sendMessageToClients(Object o) {
+		super.sendMessageToClients(o);
 	}
 
 }
