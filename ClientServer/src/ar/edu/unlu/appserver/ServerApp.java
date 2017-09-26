@@ -10,10 +10,16 @@ import ar.edu.unlu.server.ServerFactory;
 public abstract class ServerApp implements Observer{
 	
 	private Server server;
+	//private Object lock = new Object();
 	
 	public ServerApp() {
 		ServerFactory s = new ServerFactory(this);
-		this.server = s.getServerModel();
+		this.server = s.getServer();
+	}
+	
+	public ServerApp(String ip,int port) {
+		ServerFactory s = new ServerFactory(this,ip,port);
+		this.server = s.getServer();
 	}
 
 	@Override
@@ -21,7 +27,10 @@ public abstract class ServerApp implements Observer{
 		Thread actualizacionT=new Thread(){
 	        @Override
 	        public void run() {
-	        	ServerApp.this.actualizacion(arg);	        	
+	        	//synchronized (ServerApp.this.lock) {
+	        		
+				//}	
+	        	ServerApp.this.actualizacion(arg);
 	        };
 	    };
 	    

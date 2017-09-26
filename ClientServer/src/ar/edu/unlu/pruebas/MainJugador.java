@@ -14,6 +14,7 @@ public class MainJugador {
 			e.printStackTrace();
 		}
 		j.sendMessageToServer("Mensaje del clienteeeee");
+		System.out.println("El jugador ya envio el mensaje");
 		
 	}
 

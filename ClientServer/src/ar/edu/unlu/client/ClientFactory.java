@@ -11,33 +11,31 @@ import ar.edu.unlu.server.RemoteServer;
 
 public class ClientFactory{
 	
+	private static int nextClient = 0;
 	private String ip;
 	private int port;
+	private String idCliente;
 	private ClientModel clientModel;
 	private Observer observador;
 
 	
 	public ClientFactory(Observer clienteApp){
-		this(clienteApp,"127.0.0.1",9876);
+		this(clienteApp,RemoteClient.defaultClientIp,RemoteClient.defaultClientPort,RemoteServer.defaultServerIp,RemoteServer.defaultServerPort);
 	}
-	public ClientFactory(Observer clienteApp,String ip, int port){
+	public ClientFactory(Observer clienteApp,String ip, int port,String serverIp,int serverPort){
 		this.ip = ip;
 		this.port = port;
 		this.observador = clienteApp;
-		connectServer(); 	 			 
+		this.idCliente = this.ip+":"+String.valueOf(++nextClient);
+		connectServer(serverIp,serverPort); 	 			 
 	}
 	
 	public Client getClient() {
 		return this.clientModel;
 	}
 
-	private void connectServer() {
-		try{ 								
-			
-			//Deberia poder parametrizarse
-			String serverIp = "127.0.0.1";
-			int serverPort = 7896;
-			
+	private void connectServer(String serverIp,int serverPort) {
+		try{			
 			//Me conecto al servidor
 			Registry registro=LocateRegistry.getRegistry(serverIp, serverPort);
 			RemoteServer server = (RemoteServer)registro.lookup("ServerPOO");
@@ -62,7 +60,7 @@ public class ClientFactory{
 		try{
 			 System.setProperty("java.rmi.server.hostname", this.ip);
 			 Registry registro = LocateRegistry.createRegistry(this.port);
-			 this.clientModel = new ClientModel("Cliente1");
+			 this.clientModel = new ClientModel(this.idCliente);
 			 this.clientModel.addObserver(this.observador);
 			 RemoteClient remoteClientModel = (RemoteClient) UnicastRemoteObject.exportObject(this.clientModel, port);
 	         registro.bind("ClientePOO", remoteClientModel);

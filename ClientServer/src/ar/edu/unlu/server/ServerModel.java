@@ -27,12 +27,10 @@ public class ServerModel extends Observable implements RemoteServer,Server{
 			registro = LocateRegistry.getRegistry(ip, port);
 			RemoteClient cliente =(RemoteClient)registro.lookup("ClientePOO");
 			clientes.add(cliente);
-			//this.notifyThread();
 			this.setChanged();
     		this.notifyObservers("Nuevo cliente conectado = "+cliente.getId());
 			System.out.println("El modelo del servidor registro un nuevo cliente");
 		} catch (RemoteException | NotBoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 	    

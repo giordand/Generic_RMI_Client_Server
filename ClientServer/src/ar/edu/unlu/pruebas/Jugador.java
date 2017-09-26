@@ -1,8 +1,12 @@
 package ar.edu.unlu.pruebas;
 
-import ar.edu.unlu.appcliente.ClienteApp;
+import ar.edu.unlu.appcliente.ClientApp;
 
-public class Jugador extends ClienteApp{
+public class Jugador extends ClientApp{
+
+	public Jugador() {
+		super("192.168.157.101",8734,"192.168.157.101",9999);
+	}
 
 	@Override
 	protected void actualizacion(Object arg) {
