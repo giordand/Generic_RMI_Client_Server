@@ -5,7 +5,7 @@ import ar.edu.unlu.clientserver.appcliente.ClientApp;
 public class Jugador extends ClientApp{
 
 	public Jugador() {
-		super("192.168.157.101",8734,"192.168.157.101",9999);
+		super("127.0.0.1",8734,"127.0.0.1",12001);
 	}
 
 	@Override

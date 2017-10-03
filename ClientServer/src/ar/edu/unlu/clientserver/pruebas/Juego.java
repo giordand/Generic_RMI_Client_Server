@@ -5,7 +5,7 @@ import ar.edu.unlu.clientserver.appserver.ServerApp;
 public class Juego extends ServerApp{
 	
 	public Juego() {
-		super("192.168.157.101",9999);
+		super("127.0.0.1",12001);
 	}
 
 	@Override
