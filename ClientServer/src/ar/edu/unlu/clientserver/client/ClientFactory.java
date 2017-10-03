@@ -1,11 +1,11 @@
-package ar.edu.unlu.client;
+package ar.edu.unlu.clientserver.client;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.Observer;
 
-import ar.edu.unlu.server.RemoteServer;
+import ar.edu.unlu.clientserver.server.RemoteServer;
 
 
 

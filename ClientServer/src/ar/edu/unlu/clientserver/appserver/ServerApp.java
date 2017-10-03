@@ -1,11 +1,11 @@
-package ar.edu.unlu.appserver;
+package ar.edu.unlu.clientserver.appserver;
 
 import java.rmi.RemoteException;
 import java.util.Observable;
 import java.util.Observer;
 
-import ar.edu.unlu.server.Server;
-import ar.edu.unlu.server.ServerFactory;
+import ar.edu.unlu.clientserver.server.Server;
+import ar.edu.unlu.clientserver.server.ServerFactory;
 
 public abstract class ServerApp implements Observer{
 	

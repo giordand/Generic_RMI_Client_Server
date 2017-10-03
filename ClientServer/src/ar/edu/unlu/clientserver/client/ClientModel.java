@@ -1,15 +1,15 @@
-package ar.edu.unlu.client;
+package ar.edu.unlu.clientserver.client;
 
 import java.rmi.RemoteException;
 import java.util.Observable;
 
-import ar.edu.unlu.server.RemoteServer;
+import ar.edu.unlu.clientserver.server.RemoteServer;
 
 public class ClientModel extends Observable implements RemoteClient,Client {
 	private String id;
 	private RemoteServer server;
 	
-	public ClientModel(String id) {
+	protected ClientModel(String id) {
 		this.id = id;
 	}
 	

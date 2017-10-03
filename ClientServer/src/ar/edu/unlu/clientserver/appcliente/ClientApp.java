@@ -1,11 +1,11 @@
-package ar.edu.unlu.appcliente;
+package ar.edu.unlu.clientserver.appcliente;
 
 import java.rmi.RemoteException;
 import java.util.Observable;
 import java.util.Observer;
 
-import ar.edu.unlu.client.Client;
-import ar.edu.unlu.client.ClientFactory;
+import ar.edu.unlu.clientserver.client.Client;
+import ar.edu.unlu.clientserver.client.ClientFactory;
 
 public abstract class ClientApp implements Observer{
 	

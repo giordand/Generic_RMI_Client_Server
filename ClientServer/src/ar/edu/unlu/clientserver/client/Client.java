@@ -1,4 +1,4 @@
-package ar.edu.unlu.client;
+package ar.edu.unlu.clientserver.client;
 
 import java.rmi.RemoteException;
 

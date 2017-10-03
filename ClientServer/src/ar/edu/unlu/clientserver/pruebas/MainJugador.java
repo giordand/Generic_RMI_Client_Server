@@ -1,4 +1,4 @@
-package ar.edu.unlu.pruebas;
+package ar.edu.unlu.clientserver.pruebas;
 
 public class MainJugador {
 

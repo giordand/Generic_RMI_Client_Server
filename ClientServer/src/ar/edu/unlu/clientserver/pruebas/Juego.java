@@ -1,6 +1,6 @@
-package ar.edu.unlu.pruebas;
+package ar.edu.unlu.clientserver.pruebas;
 
-import ar.edu.unlu.appserver.ServerApp;
+import ar.edu.unlu.clientserver.appserver.ServerApp;
 
 public class Juego extends ServerApp{
 	
